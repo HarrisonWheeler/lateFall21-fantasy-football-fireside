@@ -1,7 +1,7 @@
 
 export class Player {
   constructor(data) {
-    this.id = data._id
+    this.id = data._id || null
     this.firstname = data.firstname || 'N/A'
     this.lastname = data.lastname || 'N/A'
     this.fullname = data.fullname || 'N/A'

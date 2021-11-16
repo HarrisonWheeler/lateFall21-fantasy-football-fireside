@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <!-- <Player v-for="p in players" :key="p.id" :player="p" /> -->
+      <Player v-for="p in players" :key="p.id" :player="p" />
     </div>
   </div>
 </template>
@@ -13,7 +13,7 @@ export default {
   name: "Home",
   setup() {
     return {
-      players: computed(() => AppState.players),
+      players: computed(() => AppState.searchedPlayers),
     };
   },
 };

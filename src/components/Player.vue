@@ -5,34 +5,13 @@
         <div class="row pb-1">
           <div class="col-md-12">
             <i
-              class="
-                mdi mdi-plus-circle
-                p-0
-                float-right
-                btn
-                text-success
-                ${this.id
-                ?
-                'visually-hidden'
-                :
-                ''}
-              "
-              onclick="app.playersController.addPlayer('${this.playerId}')"
+              class="mdi mdi-plus-circle p-0 float-right btn text-success"
+              v-if="!player.id"
+              @click="addPlayer()"
             ></i>
             <i
-              class="
-                mdi mdi-minus-circle
-                p-0
-                float-right
-                btn
-                text-danger
-                ${!this.id
-                ?
-                'visually-hidden'
-                :
-                ''}
-              "
-              onclick="app.playersController.removePlayer('${this.id}')"
+              class="mdi mdi-minus-circle p-0 float-right btn text-danger"
+              v-else
             ></i>
           </div>
           <div class="col-md-6">
@@ -57,6 +36,8 @@
 
 
 <script>
+import { playersService } from "../services/PlayersService";
+import Pop from "../utils/Pop";
 // TODO
 // 1 - show an off canvas with slots - mainly how to pop, instantiate, and send through slots
 // 2 - show how to locally update data, and have the data be reactive
@@ -68,8 +49,16 @@ export default {
       required: true,
     },
   },
-  setup() {
-    return {};
+  setup(props) {
+    return {
+      async addPlayer() {
+        try {
+          await playersService.addPlayer(props.player.playerId);
+        } catch (error) {
+          Pop.toast(error.message, "error");
+        }
+      },
+    };
   },
 };
 </script>
