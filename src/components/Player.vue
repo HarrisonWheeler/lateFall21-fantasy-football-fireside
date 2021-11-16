@@ -11,6 +11,7 @@
           <i
             class="mdi mdi-minus-circle p-0 float-right btn text-danger"
             v-else
+            @click="removePlayer()"
           ></i>
         </div>
         <div class="col-md-6">
@@ -34,6 +35,7 @@
 
 
 <script>
+import { Offcanvas } from "bootstrap";
 import { playersService } from "../services/PlayersService";
 import Pop from "../utils/Pop";
 // TODO
@@ -53,6 +55,20 @@ export default {
         try {
           await playersService.addPlayer(props.player.playerId);
           Pop.toast("Player Added", "success");
+        } catch (error) {
+          Pop.toast(error.message, "error");
+        }
+      },
+      async removePlayer() {
+        try {
+          if (await Pop.confirm("You want to end this player's career?")) {
+            await playersService.removePlayer(props.player.id);
+          }
+          //REVIEW Jank but without this the offcanvas closes and backdrops sticks
+          const myOffcanvas = Offcanvas.getInstance(
+            document.getElementById("offcanvas")
+          );
+          myOffcanvas.show();
         } catch (error) {
           Pop.toast(error.message, "error");
         }

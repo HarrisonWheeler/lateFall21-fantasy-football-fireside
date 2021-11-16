@@ -34,7 +34,13 @@ class PlayersService {
   async addPlayer(playerId) {
     let foundPlayer = AppState.players.find(p => p.playerId === playerId)
     const res = await api.post('api/players', foundPlayer)
-    AppState.myPlayers = [new Player(res.data), ...AppState.myPlayers]
+    AppState.myPlayers.unshift(new Player(res.data))
+  }
+
+  async removePlayer(playerId) {
+    const res = await api.delete(`api/players/${playerId}`)
+    logger.log('remove player res', res)
+    AppState.myPlayers = AppState.myPlayers.filter(p => p.id !== playerId)
   }
 
 
