@@ -1,35 +1,33 @@
 <template>
-  <div class="col-md-3 mb-1">
-    <div class="card mb-3 rounded shadow">
-      <div class="card-body rounded p-1">
-        <div class="row pb-1">
-          <div class="col-md-12">
-            <i
-              class="mdi mdi-plus-circle p-0 float-right btn text-success"
-              v-if="!player.id"
-              @click="addPlayer()"
-            ></i>
-            <i
-              class="mdi mdi-minus-circle p-0 float-right btn text-danger"
-              v-else
-            ></i>
-          </div>
-          <div class="col-md-6">
-            <h6 class="card-text">Name: {{ player.fullname }}</h6>
-            <h6 class="card-text">Pos: {{ player.position }}</h6>
-          </div>
-          <div class="col-md-6">
-            <h6 class="card-text"># {{ player.jerseyNumber }}</h6>
-            <h6 class="card-text">{{ player.team }}</h6>
-          </div>
+  <div class="card rounded shadow mb-2">
+    <div class="card-body rounded p-1">
+      <div class="row pb-1">
+        <div class="col-md-12">
+          <i
+            class="mdi mdi-plus-circle p-0 float-right btn text-success"
+            v-if="player.id == null"
+            @click="addPlayer()"
+          ></i>
+          <i
+            class="mdi mdi-minus-circle p-0 float-right btn text-danger"
+            v-else
+          ></i>
+        </div>
+        <div class="col-md-6">
+          <h6 class="card-text">Name: {{ player.fullname }}</h6>
+          <h6 class="card-text">Pos: {{ player.position }}</h6>
+        </div>
+        <div class="col-md-6">
+          <h6 class="card-text"># {{ player.jerseyNumber }}</h6>
+          <h6 class="card-text">{{ player.team }}</h6>
         </div>
       </div>
-      <img
-        :src="player.imgURL"
-        class="card-img-bottom rounded"
-        alt="http://placehold.it/300x300"
-      />
     </div>
+    <img
+      :src="player.imgURL"
+      class="card-img-bottom rounded"
+      alt="http://placehold.it/300x300"
+    />
   </div>
 </template>
 
@@ -54,6 +52,7 @@ export default {
       async addPlayer() {
         try {
           await playersService.addPlayer(props.player.playerId);
+          Pop.toast("Player Added", "success");
         } catch (error) {
           Pop.toast(error.message, "error");
         }

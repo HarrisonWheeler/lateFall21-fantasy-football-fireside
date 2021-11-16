@@ -33,9 +33,7 @@ class PlayersService {
 
   async addPlayer(playerId) {
     let foundPlayer = AppState.players.find(p => p.playerId === playerId)
-    logger.log('foundPlayer', foundPlayer)
     const res = await api.post('api/players', foundPlayer)
-    logger.log('add player res', res)
     AppState.myPlayers = [new Player(res.data), ...AppState.myPlayers]
   }
 

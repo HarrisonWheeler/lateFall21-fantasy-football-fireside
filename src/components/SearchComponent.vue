@@ -20,7 +20,6 @@
 <script>
 import { ref } from "@vue/reactivity";
 import { AppState } from "../AppState";
-import { logger } from "../utils/Logger";
 export default {
   setup() {
     const editable = ref("");
