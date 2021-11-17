@@ -9,7 +9,7 @@
     id="team-offCanvas"
   >
     <template #offcanvas-header>
-      <h1>hi dad</h1>
+      <h1>My Team</h1>
     </template>
     <template #offcanvas-body>
       <Player v-for="p in myPlayers" :key="p.id" :player="p" />
