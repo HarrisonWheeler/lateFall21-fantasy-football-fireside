@@ -18,14 +18,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
+        <SearchComponent />
         <button
-          class="btn btn-success"
-          data-bs-target="#offcanvas"
+          class="btn btn-success ms-5"
+          data-bs-target="#team-offCanvas"
           data-bs-toggle="offcanvas"
         >
           My Team
         </button>
-        <SearchComponent />
       </ul>
       <span class="navbar-text">
         <button

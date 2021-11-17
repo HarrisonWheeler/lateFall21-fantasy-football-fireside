@@ -4,23 +4,17 @@
       <Player v-for="p in players" :key="p.id" :player="p" class="col-md-4" />
     </div>
   </div>
-
-  <!-- My Team off-canvas -->
-  <PlayerOffCanvas :class="myPlayers.length >= 8 ? 'bg-success' : 'bg-danger'">
+  <TeamOffCanvas
+    :class="myPlayers.length >= 8 ? 'bg-success' : 'bg-danger'"
+    id="team-offCanvas"
+  >
     <template #offcanvas-header>
-      <h1>My Team</h1>
+      <h1>hi dad</h1>
     </template>
     <template #offcanvas-body>
-      <div class="row">
-        <Player
-          v-for="p in myPlayers"
-          :key="p.id"
-          :player="p"
-          class="col-12 m-0"
-        />
-      </div>
+      <Player v-for="p in myPlayers" :key="p.id" :player="p" />
     </template>
-  </PlayerOffCanvas>
+  </TeamOffCanvas>
 </template>
 
 <script>

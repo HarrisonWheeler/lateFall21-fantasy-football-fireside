@@ -2,7 +2,6 @@
   <div
     class="offcanvas offcanvas-start"
     tabindex="-1"
-    id="offcanvas"
     aria-labelledby="offcanvasLabel"
   >
     <div class="offcanvas-header">

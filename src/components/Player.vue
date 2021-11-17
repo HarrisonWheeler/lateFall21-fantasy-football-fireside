@@ -53,22 +53,26 @@ export default {
     return {
       async addPlayer() {
         try {
-          await playersService.addPlayer(props.player.playerId);
-          Pop.toast("Player Added", "success");
+          let addedPlayer = await playersService.addPlayer(
+            props.player.playerId
+          );
+          Pop.toast(`${addedPlayer.fullname} added! Much success!`);
         } catch (error) {
           Pop.toast(error.message, "error");
         }
       },
       async removePlayer() {
         try {
-          if (await Pop.confirm("You want to end this player's career?")) {
-            await playersService.removePlayer(props.player.id);
+          if (await Pop.confirm("End this players career....? Ok.... FINE")) {
+            let deletedPlayer = await playersService.removePlayer(
+              props.player.id
+            );
+            Pop.toast(`${deletedPlayer.fullname}'s career has ended. Sad`);
+            const offCanvas = Offcanvas.getOrCreateInstance(
+              document.getElementById("team-offCanvas")
+            );
+            offCanvas.show();
           }
-          //REVIEW Jank but without this the offcanvas closes and backdrops sticks
-          const myOffcanvas = Offcanvas.getInstance(
-            document.getElementById("offcanvas")
-          );
-          myOffcanvas.show();
         } catch (error) {
           Pop.toast(error.message, "error");
         }
