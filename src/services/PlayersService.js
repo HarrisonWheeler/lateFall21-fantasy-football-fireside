@@ -29,10 +29,12 @@ class PlayersService {
     let foundPlayer = AppState.players.find(p => p.playerId == playerId)
     const res = await api.post('api/players', foundPlayer)
     logger.log('add player res', res)
+    // local add
     AppState.myPlayers.unshift(new Player(res.data))
-    return foundPlayer
     // REVIEW below is bad above is good!
     // this.getTeamPlayers()
+    // REVIEW returning player here so that we can make the notification in the player component more unique/dynamic
+    return foundPlayer
   }
 
   async getTeamPlayers() {
@@ -44,7 +46,9 @@ class PlayersService {
   async removePlayer(playerId) {
     const res = await api.delete(`api/players/${playerId}`)
     logger.log('remove player res', res)
+    // Local delete
     AppState.myPlayers = AppState.myPlayers.filter(p => p.id !== playerId)
+    // REVIEW returning player here so that we can make the notification in the player component more unique/dynamic
     return new Player(res.data)
   }
 }

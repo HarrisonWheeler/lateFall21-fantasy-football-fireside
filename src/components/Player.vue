@@ -68,7 +68,7 @@ export default {
               props.player.id
             );
             Pop.toast(`${deletedPlayer.fullname}'s career has ended. Sad`);
-            // REVIEW this is to fix an issue with the offcanvas closing on confirm. May not be the perfect solution, but this fixes that issue
+            // REVIEW this is to fix an issue with the offcanvas closing on confirm. May not be the perfect solution, but this fixes that problem
             const offCanvas = Offcanvas.getOrCreateInstance(
               document.getElementById("team-offCanvas")
             );
